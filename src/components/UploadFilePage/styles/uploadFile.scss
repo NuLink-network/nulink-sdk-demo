@@ -1,0 +1,33 @@
+@import '@@/src/common/common.scss';
+
+.upload-file-panel {
+    width: 100%;
+    background: #ffffff;
+    padding: 10px 20px;
+
+    .upload-file-header {
+        @extend %flex-layout;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+
+        p {
+            font-family: 'Archivo';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 20px;
+            color: #6E6E6E;
+            margin: 0;
+        }
+    }
+
+    .upload-file-area {
+        width: 100%;
+
+        li {
+            padding: 10px 0;
+            border-top: 1px solid #DBDBDB;
+        }
+    }
+}

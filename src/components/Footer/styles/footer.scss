@@ -1,0 +1,85 @@
+@import '@@/src/common/common.scss';
+
+.fotter {
+    @extend %flex-layout;
+    @extend %flex-column;
+    width: 100vw;
+    background: linear-gradient(205.84deg, #150333 32.45%, #090B12 91.57%);
+
+    .main-layout {
+        background: linear-gradient(205.84deg, #150333 32.45%, #090B12 91.57%);
+    }
+
+    .footer-t {
+        @extend %flex-layout;
+        width: 100%;
+        justify-content: flex-start;
+        box-sizing: border-box;
+
+        >div {
+
+            h2 {
+                color: #ffffff;
+                font-family: 'Archivo';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 24px;
+
+            }
+
+            >ul {
+                @extend %flex-layout;
+                margin-top: 30px;
+
+                li {
+                    margin-left: 30px;
+                    cursor: pointer;
+
+                    a {
+                        text-decoration: none;
+                        color: #ffffff;
+                        font-family: 'Archivo';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 20px;
+                    }
+
+                    &:hover {
+                        position: relative;
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            width: 0%;
+                            left: 0;
+                            bottom: -50%;
+                            height: 2px;
+                            background: linear-gradient(88.57deg, #FFEA7D -41.16%, #F19090 32.99%, #7D92FF 99.49%);
+                            animation: 1s slidein forwards;
+                        }
+                    }
+
+                    &:first-child {
+                        margin-left: 0;
+                    }
+                }
+            }
+
+            &:last-child {
+                margin-left: 400px;
+            }
+        }
+    }
+
+    .copy-right {
+        width: 100%;
+        color: #ffffff;
+        font-size: 12px;
+        margin-top: 22px;
+        line-height: 18px;
+        font-style: normal;
+        font-family: 'Archivo';
+    }
+}

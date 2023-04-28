@@ -1,0 +1,5 @@
+node_modules/
+src/components
+src/*.tsx
+src/features/nulink-pre
+src/features/pre

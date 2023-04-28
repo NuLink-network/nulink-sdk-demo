@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "typeRoots": ["node_modules/@types"],
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "diagnostics": true,
+    "removeComments": true,
+    "sourceMap": false, // for debug set sourceMap: true
+    "preserveConstEnums": true,
+    "noImplicitAny": false,
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": ["src/features/pre/*", 
+  //"test",  "**/__tests__/*"
+],
+  "extends": "./tsconfig.paths.json",
+  "rules": {
+    "no-unused-vars": "off"
+  }
+}

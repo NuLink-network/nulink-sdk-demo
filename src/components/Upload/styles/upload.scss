@@ -1,0 +1,13 @@
+@import '@@/src/common/common.scss';
+
+.upload-area {
+    @extend %flex-layout;
+    padding: 30px 0;
+    border: 1px solid #D8D8D8;
+    border-radius: 4px;
+    margin-top: 10px;
+
+    span {
+        margin: 0 10px;
+    }
+}

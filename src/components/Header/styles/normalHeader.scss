@@ -1,0 +1,75 @@
+@import '@@/src/common/common.scss';
+
+.normal-header {
+    @extend %flex-layout;
+    justify-content: space-between;
+    width: 100vw;
+    height: 80px;
+    padding: 0 82px;
+
+    .menu {
+        @extend %flex-layout;
+
+        .nav-menu {
+            @extend %flex-layout;
+
+            li {
+                font-family: 'Archivo';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 24px;
+                text-align: center;
+                color: #000000;
+                margin: 0 20px;
+
+                a {
+                    text-decoration: none;
+                    font-family: 'Archivo';
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 20px;
+                    line-height: 22px;
+                    color: #000000;
+                }
+            }
+
+            .nulink-address {
+                position: relative;
+
+                .address-item {
+                    cursor: pointer;
+                }
+
+                .logout {
+                    display: none;
+                    position: absolute;
+                    padding: 16px;
+                    background: #FFFFFF;
+                    box-shadow: 4px 4px 18px rgba(5, 5, 31, 0.1);
+                    border-radius: 8px;
+
+                    >div {
+                        @extend %flex-layout;
+                        margin: 10px 0;
+
+                        img {
+                            cursor: pointer;
+                            margin-left: 10px;
+                        }
+                    }
+                }
+
+                &:hover .logout {
+                    display: block;
+                }
+            }
+
+            .active-item {
+                a {
+                    color: #401D97 !important;
+                }
+            }
+        }
+    }
+}

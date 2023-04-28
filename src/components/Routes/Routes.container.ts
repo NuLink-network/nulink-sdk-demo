@@ -1,0 +1,8 @@
+import { connect } from 'react-redux'
+import Routes from './Routes'
+
+const mapState = () => ({})
+
+const mapDispatch = (_: any) => ({})
+
+export default connect(mapState, mapDispatch)(Routes)
