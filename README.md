@@ -22,9 +22,9 @@ This project is a demo program that demonstrates how to use `@nulink_network/nul
     3. yarn install
     4. yarn start
     5. After startup, the web pages you can access are as follows:
-       // http://127.0.0.1/upload-file
+       // http://127.0.0.1:3000/upload-file
        1. upload-file: Show how to use nulink account to encrypt and upload files
-       // http://127.0.0.1/test
+       // http://127.0.0.1:3000/test
        2. test: Show how to use nulink's api -> src/feature/nulink-pre/testApis.ts
   ```
     
