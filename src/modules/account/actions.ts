@@ -1,4 +1,5 @@
 import { action } from 'typesafe-actions'
+//import/no-extraneous-dependencies
 import { Account } from "@nulink_network/nulink-sdk";
 
 export interface IBalanceData {
