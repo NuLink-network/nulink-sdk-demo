@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { proxyReencryptionAPIsTestRun } from "@@/src/features/nulink-pre/testApis";
+import { proxyReencryptionAPIsTestRun as  proxyReencryptionAPIsMultiTestRun} from "@@/src/features/nulink-pre/testMultiApprove";
 
 const Test = memo(() => {
   console.log("process.env: ", process.env);
@@ -8,14 +9,14 @@ const Test = memo(() => {
   );
 
   const testHandler = () => {
-
-    proxyReencryptionAPIsTestRun()
+    proxyReencryptionAPIsMultiTestRun()
+    //proxyReencryptionAPIsTestRun()
       .then((data) => {
         console.log("finish");
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      // .catch((err) => {
+      //   console.log(err);
+      // });
   };
   return (
     <div>
