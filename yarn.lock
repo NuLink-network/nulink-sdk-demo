@@ -3237,17 +3237,17 @@
   resolved "https://registry.npmmirror.com/@nucypher/nucypher-core/-/nucypher-core-0.2.0.tgz"
   integrity sha512-vSSMbe4ad/Bkq5fdehSiMcflvHqLjfcCqAym+GWSiOvs/LJh4nB8Zo2/bJoMES1M1xoCjAZv4NZpPMlZiAXgzQ==
 
-"@nulink_network/nulink-sdk@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-sdk/-/nulink-sdk-0.1.6.tgz#33b0fc554443da0570d8e3d2c1dc70328784f224"
-  integrity sha512-Gkig9wWCIiv116+8W3zosrZ7m/TRLM1CD3epfmpu7xZB8AkVo3gt4pAMm40HwU34z/zjI+QYCk0tcTeRiNyvIA==
+"@nulink_network/nulink-sdk@0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-sdk/-/nulink-sdk-0.1.9.tgz#3af943ae5d9f11b66b1252511acf36548b450dc1"
+  integrity sha512-+vV3NBjtyR0VUymD79n9Efc2g6m6+iFuIlmMryF2dKLwGI1wfQSGup7lOA5XhYfrEbDka9GoUsxBopFCK2N4JA==
   dependencies:
     "@ethereumjs/common" "^3.0.2"
     "@ethereumjs/tx" "^4.0.2"
     "@ethersproject/providers" "^5.7.2"
     "@ethersproject/wallet" "^5.7.0"
     "@nucypher/nucypher-core" "0.2.0"
-    "@nulink_network/nulink-ts" "0.1.21"
+    "@nulink_network/nulink-ts" "^0.1.22"
     "@nulink_network/ts-indexdb" "^0.0.5"
     "@offirmo/globalthis-ponyfill" "^4.0.0"
     "@types/humps" "^2.0.2"
@@ -3310,10 +3310,10 @@
     web3-eth-contract "^1.9.0"
     webpack "5.64.4"
 
-"@nulink_network/nulink-ts@0.1.21":
-  version "0.1.21"
-  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-ts/-/nulink-ts-0.1.21.tgz#ff2a40aa97d5c7a51a637ca3e857fd1014c54bcb"
-  integrity sha512-KKmTEu1KdN2FaQ7Qq/Nctl5ZUGw6DAKFFD1Md6mTkb74bhl1TfkzQiFlQxpfhrFZAXd1ehKSP+VnvKVjtXoKwg==
+"@nulink_network/nulink-ts@^0.1.22":
+  version "0.1.22"
+  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-ts/-/nulink-ts-0.1.22.tgz#374c07c6da07ecd6f22a0ce19eee4e71904fe9f7"
+  integrity sha512-h25SEzpMyZWH0gJPWqE6Q+Otd+En6Y0X+mF/j6vaf7OjXwenSD0Z5vN3whzp0qKjrCSKt2hUjO2F/x30A3FIUA==
   dependencies:
     "@nucypher/nucypher-core" "0.2.0"
     axios "^0.21.1"
