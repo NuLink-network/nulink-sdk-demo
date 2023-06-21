@@ -149,7 +149,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
 
   assert(uploadFileInfo['owner_id'] === accountAlice.id)
 
-  const numReqFiles = 10;
+  const numReqFiles = 2;
   // ............................................
   //
   //Bob find the file on Internet
@@ -284,7 +284,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
     applyIds.push(needToApprovedFileInfo["apply_id"])
   }
 
-
+  debugger;
 
   const serverFeeNLKInWei: BigNumber = await getPolicysTokenCost(accountAlice, startDates, endDates, ursulaShares)
 
