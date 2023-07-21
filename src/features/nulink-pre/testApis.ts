@@ -90,6 +90,10 @@ export const proxyReencryptionAPIsTestRun = async () => {
     },
   ];
 
+  //Note: If it's the same file, different policies must be used for uploading (i.e., multiple calls to uploadFilesByCreatePolicy 
+  //instead of uploading multiple files within the same call to uploadFilesByCreatePolicy), otherwise, 
+  //it will fail during batch approval. This is a bug and will be fixed in later versions.
+
   //2. Alice encrypt and update a file to the ipfs network
   await uploadFilesByCreatePolicy(accountAlice, FileCategory.History, fileList);
 

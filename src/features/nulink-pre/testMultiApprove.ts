@@ -82,6 +82,10 @@ export const proxyReencryptionAPIsTestRun = async () => {
   const enc = new TextEncoder() // always utf-8
   const historyContent: Uint8Array = enc.encode(plainText)
 
+  //Note: If it's the same file, different policies must be used for uploading (i.e., multiple calls to uploadFilesByCreatePolicy 
+  //instead of uploading multiple files within the same call to uploadFilesByCreatePolicy), otherwise, 
+  //it will fail during batch approval. This is a bug and will be fixed in later versions.
+  
   //1.Alice upload file
   const fileList: FileInfo[] = [
     {
