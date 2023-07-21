@@ -44,7 +44,7 @@ const UploadFile = memo((props: IProps) => {
         </ul>
       </div>
       <OvalButton
-        title="Comfirm upload"
+        title="Confirm and Upload"
         className="m-t-20"
         onClick={onConfirm}
       />

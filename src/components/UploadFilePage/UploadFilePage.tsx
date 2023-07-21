@@ -63,7 +63,15 @@ const UploadFilePage = (props: any) => {
       );
       const accountAlice: wallet.Account =
         (await wallet.getWalletDefaultAccount("1")) as wallet.Account;
-      await wallet.uploadFilesByCreatePolicy(accountAlice, "unkown", upFiles);
+
+      for (let index = 0; index < upFiles.length; index++) {
+        await wallet.uploadFilesByCreatePolicy(accountAlice, 'unkown', [
+          upFiles[index],
+        ])
+      }
+      
+      // await wallet.uploadFilesByCreatePolicy(accountAlice, "unkown", upFiles);
+
       showMsg("Upload Success", "success");
       setFileList([]);
     } catch (error: any) {
