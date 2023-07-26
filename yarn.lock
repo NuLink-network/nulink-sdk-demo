@@ -3237,10 +3237,10 @@
   resolved "https://registry.npmmirror.com/@nucypher/nucypher-core/-/nucypher-core-0.2.0.tgz"
   integrity sha512-vSSMbe4ad/Bkq5fdehSiMcflvHqLjfcCqAym+GWSiOvs/LJh4nB8Zo2/bJoMES1M1xoCjAZv4NZpPMlZiAXgzQ==
 
-"@nulink_network/nulink-sdk@^0.1.14":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-sdk/-/nulink-sdk-0.1.14.tgz#7d449c7b50e694074b894d80b8e2480ac12add91"
-  integrity sha512-qO7Kc3M1CBICqPzqKGUODYb27xd9k5cZtpPrgnU6ksuF8pvlrQNpj0VSJ3Cfceb9Cybg5DDZabo2kAKLB9Pa1A==
+"@nulink_network/nulink-sdk@^0.1.15":
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-sdk/-/nulink-sdk-0.1.15.tgz#de33424c39d1d257efd1991f7638e2fb21ed1113"
+  integrity sha512-+LFM6o4jBY9BWr3HgRzEd94LGFC+TiwK8TJe2+OD7Xh2O1b9/vMzyAKzlOezQ1QP2wTyxampILTJGcLbK/8Fjw==
   dependencies:
     "@ethereumjs/common" "^3.0.2"
     "@ethereumjs/tx" "^4.0.2"
