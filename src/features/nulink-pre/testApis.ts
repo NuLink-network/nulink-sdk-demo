@@ -39,6 +39,7 @@ import assert from "assert-ts";
 import { BigNumber, ethers } from "ethers";
 import { nanoid } from "nanoid";
 import Web3 from "web3";
+import sleep from 'await-sleep'
 
 export const proxyReencryptionAPIsTestRun = async () => {
   // Declaring and intializing the mnemonic and password variables.
@@ -291,6 +292,8 @@ export const proxyReencryptionAPIsTestRun = async () => {
     filesNeedToApprovedResultList2["list"][fileIndex4];
   assert(needToApprovedFileInfo2["file_owner_id"] === accountAlice.id);
 
+  debugger;
+
   //At this point Alice approves Bob's file usage request, Due to on-chain approval of Bob's request, we first evaluate gas and service fees
 
   //1. Alice calc server fee (wei): the nulink token tnlk/nlk
@@ -335,6 +338,9 @@ export const proxyReencryptionAPIsTestRun = async () => {
     "", //porterUri
     BigNumber.from(gasFeeWei)
   );
+
+    //You need to wait for a while for the on-chain transaction to be confirmed and for the backend to listen for the "approve" event.
+    await sleep(50000) //50 seconds
 
   //Alice, as the publisher of the file, obtains the list of files that she has successfully approved
   const aliceApprovedfilesList = await getApprovedFilesAsPublisher(
