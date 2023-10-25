@@ -1,14 +1,14 @@
 # Getting Started with Nulink-sdk-demo
 
 
-This project is a demo program that demonstrates how to use `@nulink_network/nulink-sdk`
+This project is a demo program that demonstrates how to use `@nulink_network/nulink-sdk-crosschain`
 
 # how to use
   ```bash
     1.Rename .env.example to .env
     2.modify config:
       //the sdk backend testnet server address. in the nulink testnet,
-      //you can use the address: https://agent.testnet.nulink.org/bk
+      //you can use the address: https://agent.testnet.nulink.org/crosschain/bk
       REACT_APP_CENTRALIZED_SERVER_URL=xxxxx
       //you ipfs address, Requires permission to write data. in the nulink testnet,
       //you can use the address: https://agent.testnet.nulink.org/nuipfs 
@@ -17,13 +17,10 @@ This project is a demo program that demonstrates how to use `@nulink_network/nul
       //Configure the parameters of the network that you connect to. Parameters for networks that are not connected do not need to be configured.
       
       //the nulink bsc testnet porter address. in the nulink testnet,
-      //you can use the address: https://agent.testnet.nulink.org/porter
+      //you can use the address: https://agent.testnet.nulink.org/crosschain/porter
       REACT_APP_BSC_TESTNET_PORTER_URI= xxxxx
       //the bsc testnet web3 rpc url. example: 
       REACT_APP_BSC_TESTNET_WEB3_RPC_URL=xxxxx
-      //the nulink conflux testnet porter address. in the nulink testnet,
-      //you can use the address: https://agent.testnet.nulink.org/conflux/porter
-      REACT_APP_CONFLUX_ESPACE_TESTNET_PORTER_URI= xxxxx
       //the conflux testnet web3 rpc url. example:
       REACT_APP_CONFLUX_ESPACE_TESTNET_WEB3_RPC_URL=xxxxx
 

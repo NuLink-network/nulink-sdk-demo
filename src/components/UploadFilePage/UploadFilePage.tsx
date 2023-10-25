@@ -9,7 +9,7 @@ import { Button } from "@mui/material";
 import { NormalHeader } from "../Header";
 import { AlertColor } from "@mui/material";
 import { OvalButton } from "../OvalButton";
-import * as wallet from "@nulink_network/nulink-sdk";
+import * as wallet from "@nulink_network/nulink-sdk-crosschain";
 import uploadIcon from "@@/src/assets/common/upload.svg";
 import { getSizeNumber, blobToArrayBuffer } from "@/utils/file";
 

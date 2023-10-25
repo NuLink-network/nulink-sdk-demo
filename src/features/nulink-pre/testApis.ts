@@ -32,7 +32,7 @@ import {
   getMnemonic,
   getDefaultAccountPrivateKey,
   logoutWallet,
-} from "@nulink_network/nulink-sdk";
+} from "@nulink_network/nulink-sdk-crosschain";
 
 import assert from "assert-ts";
 

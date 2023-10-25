@@ -4,7 +4,7 @@ import { Alert } from '../Alert'
 import { TextInput } from '../TextInput'
 import { OvalButton } from '../OvalButton'
 import { AlertColor } from '@mui/material'
-import * as wallet from '@nulink_network/nulink-sdk'
+import * as wallet from '@nulink_network/nulink-sdk-crosschain'
 
 interface IProps {
   onResult: Function
