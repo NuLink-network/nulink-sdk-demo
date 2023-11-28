@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import CopyIcon from '@@/src/assets/common/copy.svg'
 import { toDisplayAddress } from '@@/src/utils/format'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { logoutWallet } from '@nulink_network/nulink-sdk'
+import { logoutWallet } from '@nulink_network/nulink-sdk-crosschain'
 
 interface IProps {
   address?: string

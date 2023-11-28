@@ -32,10 +32,10 @@ import {
   getMnemonic,
   getDefaultAccountPrivateKey,
   logoutWallet,
-} from "@nulink_network/nulink-sdk";
+} from "@nulink_network/nulink-sdk-crosschain";
 
 import assert from "assert-ts";
-
+import sleep from 'await-sleep'
 import { BigNumber, ethers } from "ethers";
 import { nanoid } from "nanoid";
 import Web3 from "web3";
@@ -336,6 +336,8 @@ export const proxyReencryptionAPIsTestRun = async () => {
     BigNumber.from(gasFeeWei)
   );
 
+  //wait for approval
+  await sleep(30000)
   //Alice, as the publisher of the file, obtains the list of files that she has successfully approved
   const aliceApprovedfilesList = await getApprovedFilesAsPublisher(
     accountAlice,

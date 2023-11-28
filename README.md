@@ -1,7 +1,7 @@
 # Getting Started with Nulink-sdk-demo
 
 
-This project is a demo program that demonstrates how to use `@nulink_network/nulink-sdk`
+This project is a demo program that demonstrates how to use `@nulink_network/nulink-sdk-crosschain`
 
 # how to use
   ```bash
