@@ -8,16 +8,16 @@ This project is a demo program that demonstrates how to use `@nulink_network/nul
     1.Rename .env.example to .env
     2.modify config:
       //the sdk backend testnet server address. in the nulink testnet,
-      //you can use the address: https://agent.testnet.nulink.org/crosschain/bk
+      //you can use the address: https://agent.testnet.nulink.org/bk
       REACT_APP_CENTRALIZED_SERVER_URL=xxxxx
       //you ipfs address, Requires permission to write data. in the nulink testnet,
-      //you can use the address: https://agent.testnet.nulink.org/nuipfs 
+      //you can use the address: https://agent.testnet.nulink.org/nuipfs
       REACT_APP_IPFS_NODE_URL=xxxxx
 
       //Configure the parameters of the network that you connect to. Parameters for networks that are not connected do not need to be configured.
       
       //the nulink bsc testnet porter address. in the nulink testnet,
-      //you can use the address: https://agent.testnet.nulink.org/crosschain/porter
+      //you can use the address: https://agent.testnet.nulink.org/porter
       REACT_APP_BSC_TESTNET_PORTER_URI= xxxxx
       //the bsc testnet web3 rpc url. example: 
       REACT_APP_BSC_TESTNET_WEB3_RPC_URL=xxxxx
