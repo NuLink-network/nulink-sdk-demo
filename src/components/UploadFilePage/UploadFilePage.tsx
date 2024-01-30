@@ -9,7 +9,7 @@ import { Button } from "@mui/material";
 import { NormalHeader } from "../Header";
 import { AlertColor } from "@mui/material";
 import { OvalButton } from "../OvalButton";
-import * as wallet from "@nulink_network/nulink-sdk-crosschain";
+import * as wallet from "@nulink_network/nulink-sdk";
 import uploadIcon from "@@/src/assets/common/upload.svg";
 import { getSizeNumber, blobToArrayBuffer } from "@/utils/file";
 
@@ -65,12 +65,12 @@ const UploadFilePage = (props: any) => {
         (await wallet.getWalletDefaultAccount("1")) as wallet.Account;
 
       for (let index = 0; index < upFiles.length; index++) {
-        await wallet.uploadFilesByCreatePolicy(accountAlice, 'unkown', [
+        await wallet.uploadDatasByCreatePolicy(accountAlice, 'unkown', [
           upFiles[index],
         ])
       }
       
-      // await wallet.uploadFilesByCreatePolicy(accountAlice, "unkown", upFiles);
+      // await wallet.uploadDatasByCreatePolicy(accountAlice, "unkown", upFiles);
 
       showMsg("Upload Success", "success");
       setFileList([]);

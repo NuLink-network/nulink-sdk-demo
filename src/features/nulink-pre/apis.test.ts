@@ -1,51 +1,58 @@
-// The following code is about importing the required packages from the different kind of sources.
+// First define a concept:
+//  Alice: as the publisher of the file (file uploader).
+//  Bob: as the user of the file (file requester)
+
+import assert from "assert-ts";
 import {
-  AccountManager,
   NuLinkHDWallet,
   Account,
+  Strategy,
+  AccountManager,
   createWallet,
   loadWallet,
   verifyPassword,
   existDefaultAccount,
+  getWalletDefaultAccount,
+  getMnemonic,
+  logoutWallet,
+  getDefaultAccountPrivateKey,
   isBlank,
   restoreWalletDataByMnemonic,
   getPolicyGasFee,
-  type FileInfo,
-  getWalletDefaultAccount,
-  FileCategory,
-  uploadFilesByCreatePolicy,
-  getUploadedFiles,
-  createAccountIfNotExist,
-  getOtherShareFiles,
-  getFileDetails,
-  applyForFilesUsagePermission,
-  getFilesPendingApprovalAsPublisher,
-  refusalApplicationForUseFiles,
-  getPolicyTokenCost,
-  approvalApplicationForUseFiles,
-  getApprovedFilesAsPublisher,
-  getApprovedFilesAsUser,
-  getFileContentByFileIdAsUser,
-  getPublishedPoliciesInfo,
-  uploadFilesBySelectPolicy,
-  getFilesByStatus,
-  getMnemonic,
-  getDefaultAccountPrivateKey,
-  logoutWallet,
-} from "@nulink_network/nulink-sdk-crosschain";
+  StorageManager,
+  DataCallback,
+  setIPFSDatas,
+  getIPFSData
+} from "@nulink_network/nulink-sdk";
 
-import assert from "assert-ts";
-import sleep from 'await-sleep'
 import { BigNumber, ethers } from "ethers";
 import { nanoid } from "nanoid";
 import Web3 from "web3";
+import { type DataInfo } from "@nulink_network/nulink-sdk";
 
+import * as pre from "@nulink_network/nulink-sdk";
+import sleep from "await-sleep";
 
-export const proxyReencryptionAPIsTestRun = async () => {
+export const run = async () => {
+  const dataCallback: DataCallback = {
+    setDatas: setIPFSDatas,
+    getData: getIPFSData,
+  };
+  //Set the external storage used by the Pre process to IPFS (for example, encrypted files uploaded by users will be stored in this storage, and users can customize the storage).
+  StorageManager.setDataCallback(dataCallback);
+  // // eslint-disable-next-line no-debugger
+  // debugger
+  // const dataCallback2: DataCallback = { setDatas: setBEDatas, getData: getBEData }
+  // //Set the external storage used by the Pre process to IPFS (for example, encrypted files uploaded by users will be stored in this storage, and users can customize the storage).
+  // StorageManager.setDataCallback(dataCallback2)
+
+  // eslint-disable-next-line no-debugger
+  debugger;
+
   // Declaring and intializing the mnemonic and password variables.
   const password: string = "1";
 
-  //first We create Alice's wallet and account by password
+  //first We create Alice wallet and account by password
   const nuLinkHDWallet1: NuLinkHDWallet = await createWallet(password);
 
   assert(nuLinkHDWallet1);
@@ -59,7 +66,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
   assert(nuLinkHDWallet1 === nuLinkHDWallet);
 
   //also, We can verify whether the user's password is correct
-  const correct: boolean = await verifyPassword(password) as boolean;
+  const correct: boolean = (await verifyPassword(password)) as boolean;
 
   assert(correct);
 
@@ -84,22 +91,24 @@ export const proxyReencryptionAPIsTestRun = async () => {
   const historyContent: Uint8Array = enc.encode(plainText);
 
   //1.Alice upload file
-  const fileList: FileInfo[] = [
+  const fileList: DataInfo[] = [
     {
-      name: `history-${nanoid()}.pdf`,
-      fileBinaryArrayBuffer: historyContent.buffer,
+      label: `history-${nanoid()}.pdf`,
+      dataArrayBuffer: historyContent.buffer,
     },
   ];
 
-  //Note: If it's the same file, different policies must be used for uploading (i.e., multiple calls to uploadFilesByCreatePolicy 
-  //instead of uploading multiple files within the same call to uploadFilesByCreatePolicy), otherwise, 
-  //it will fail during batch approval. This is a bug and will be fixed in later versions.
-
+  // eslint-disable-next-line no-debugger
+  debugger;
   //2. Alice encrypt and update a file to the ipfs network
-  await uploadFilesByCreatePolicy(accountAlice, FileCategory.History, fileList);
+  await pre.uploadDatasByCreatePolicy(
+    accountAlice,
+    pre.DataCategory.History,
+    fileList
+  );
 
   //3. We can get the file just uploaded
-  const resultList = (await getUploadedFiles(
+  const resultList = (await pre.getUploadedDatas(
     accountAlice,
     undefined,
     1,
@@ -123,7 +132,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
   let fileIndex = -1;
   for (let index = 0; index < resultList["list"].length; index++) {
     const element = resultList["list"][index];
-    if (element["file_name"] === fileList[0]["name"]) {
+    if (element["file_name"] === fileList[0]["label"]) {
       fileIndex = index;
       break;
     }
@@ -146,10 +155,10 @@ export const proxyReencryptionAPIsTestRun = async () => {
   const accountManager: AccountManager = nuLinkHDWallet.getAccountManager();
   const accountBob: Account = await accountManager.createAccount("Bob");
   // call the createAccountIfNotExist method for add user account to the center server for decouple
-  await createAccountIfNotExist(accountBob);
+  await pre.createAccountIfNotExist(accountBob);
 
   //Bob finds the file Alice has just uploaded
-  const findFileResultList = (await getOtherShareFiles(
+  const findFileResultList = (await pre.getOtherShareDatas(
     accountBob,
     undefined,
     false,
@@ -174,7 +183,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
   let fileIndex2 = -1;
   for (let index = 0; index < findFileResultList["list"].length; index++) {
     const element = findFileResultList["list"][index];
-    if (element["file_name"] === fileList[0]["name"]) {
+    if (element["file_name"] === fileList[0]["label"]) {
       fileIndex2 = index;
       break;
     }
@@ -187,7 +196,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
   const applyFileId = findFileInfo["file_id"];
 
   //get file details
-  const fileDetails = (await getFileDetails(
+  const fileDetails = (await pre.getDataDetails(
     applyFileId,
     accountBob.id
   )) as object;
@@ -204,7 +213,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
 
   //Bob requests permission to use the file for 7 days
   try {
-    await applyForFilesUsagePermission([applyFileId], accountBob, 7);
+    await pre.applyForDatasUsagePermission([applyFileId], accountBob, 7);
   } catch (e) {
     console.log("bob apply file failed", e);
     assert(false);
@@ -212,7 +221,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
 
   //Alice receives Bob's file usage request
   const filesNeedToApprovedResultList =
-    await getFilesPendingApprovalAsPublisher(accountAlice, 1, 1000);
+    await pre.getDatasPendingApprovalAsPublisher(accountAlice, 1, 1000);
   /*return data format: {
       list: [
         { apply_id, file_id:, proposer, proposer_id, file_owner:, file_owner_id:, policy_id, hrac, start_at:, end_at, created_at }
@@ -244,14 +253,14 @@ export const proxyReencryptionAPIsTestRun = async () => {
   assert(needToApprovedFileInfo["file_owner_id"] === accountAlice.id);
 
   //Alice rejected the file usage request
-  await refusalApplicationForUseFiles(
+  await pre.refusalApplicationForUseDatas(
     accountAlice,
     needToApprovedFileInfo["apply_id"]
   );
 
   //Bob apply file for usage again. The application period is three days, less than the previous seven days
   try {
-    await applyForFilesUsagePermission([applyFileId], accountBob, 3);
+    await pre.applyForDatasUsagePermission([applyFileId], accountBob, 3);
   } catch (e) {
     console.log("bob reapply file failed", e);
     assert(false);
@@ -259,7 +268,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
 
   //Alice receives Bob's file usage request again
   const filesNeedToApprovedResultList2 =
-    await getFilesPendingApprovalAsPublisher(accountAlice, 1, 1000);
+    await pre.getDatasPendingApprovalAsPublisher(accountAlice, 1, 1000);
   /*return data format: {
     list: [
       { apply_id, file_id:, proposer, proposer_id, file_owner:, file_owner_id:, policy_id, hrac, start_at:, end_at, days,  created_at }
@@ -292,9 +301,9 @@ export const proxyReencryptionAPIsTestRun = async () => {
     filesNeedToApprovedResultList2["list"][fileIndex4];
   assert(needToApprovedFileInfo2["file_owner_id"] === accountAlice.id);
 
-  debugger;
-
   //At this point Alice approves Bob's file usage request, Due to on-chain approval of Bob's request, we first evaluate gas and service fees
+
+  console.log(`accountAlice address ${accountAlice.address}`);
 
   //1. Alice calc server fee (wei): the nulink token tnlk/nlk
   const startDate: Date = new Date();
@@ -303,7 +312,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
     startMs + (needToApprovedFileInfo2["days"] as number) * 24 * 60 * 60 * 1000;
   const endDate: Date = new Date(endMs); //  start_at is seconds, but Date needs milliseconds
 
-  const serverFeeNLKInWei: BigNumber = await getPolicyTokenCost(
+  const serverFeeNLKInWei: BigNumber = await pre.getPolicyTokenCost(
     accountAlice,
     startDate,
     endDate,
@@ -319,14 +328,14 @@ export const proxyReencryptionAPIsTestRun = async () => {
     needToApprovedFileInfo2["apply_id"],
     2,
     1,
-    startMs/1000,
-    endMs/1000,
+    startMs / 1000,
+    endMs / 1000,
     BigNumber.from(serverFeeNLKInWei)
   );
 
   //Note: Please make sure that the account has sufficient tnlk and bsc testnet tokens before this, otherwise the approval will fail
   //Alice approves Bob's application for file usage. Whenever Alice approves a file request, an on-chain policy is created
-  await approvalApplicationForUseFiles(
+  await pre.approvalApplicationForUseDatas(
     accountAlice,
     accountBob.id,
     needToApprovedFileInfo2["apply_id"],
@@ -339,12 +348,11 @@ export const proxyReencryptionAPIsTestRun = async () => {
     BigNumber.from(gasFeeWei)
   );
 
-
   //You need to wait for a while for the on-chain transaction to be confirmed and for the backend to listen for the "approve" event.
-  await sleep(50000) //50 seconds
+  await sleep(20000); //20 seconds
 
   //Alice, as the publisher of the file, obtains the list of files that she has successfully approved
-  const aliceApprovedfilesList = await getApprovedFilesAsPublisher(
+  const aliceApprovedfilesList = await pre.getApprovedDatasAsPublisher(
     accountAlice,
     1,
     1000
@@ -375,7 +383,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
   console.log("file policy Id:", policyId);
 
   //Bob finds out that his application has been approved by Alice. Bob now has permission to view the contents of the file
-  const bobBeApprovedfilesList = await getApprovedFilesAsUser(
+  const bobBeApprovedfilesList = await pre.getApprovedDatasAsUser(
     accountBob,
     1,
     1000
@@ -407,7 +415,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
   assert(policyId2 === policyId);
 
   //Finally, Bob gets the contents of the file
-  const arrayBuffer: ArrayBuffer = await getFileContentByFileIdAsUser(
+  const arrayBuffer: ArrayBuffer = await pre.getDataContentByDataIdAsUser(
     accountBob,
     bobBeApprovedfilesInfo["file_id"]
   );
@@ -420,7 +428,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
 
   // Whenever Alice approves a file request, an on-chain policy is created
   // Alice can also obtain the on-chain policy information published by herself
-  const dataPolicys = await getPublishedPoliciesInfo(accountAlice, 1, 1000);
+  const dataPolicys = await pre.getPublishedPoliciesInfo(accountAlice, 1, 1000);
   /*
     return data format: {
     list: [
@@ -436,17 +444,17 @@ export const proxyReencryptionAPIsTestRun = async () => {
   const historyContent2: Uint8Array = enc.encode(plainText2);
 
   //1.upload file
-  const fileList2: FileInfo[] = [
+  const fileList2: DataInfo[] = [
     {
-      name: `philosophy-${nanoid()}.pdf`,
-      fileBinaryArrayBuffer: historyContent2.buffer,
+      label: `philosophy-${nanoid()}.pdf`,
+      dataArrayBuffer: historyContent2.buffer,
     },
   ];
 
   //Files uploaded by using published policies do not need approval. Bob can use the files directly, so there is no approval record
-  const fileIds = await uploadFilesBySelectPolicy(
+  const fileIds = await pre.uploadDatasBySelectPolicy(
     accountAlice,
-    FileCategory.Philosophy,
+    pre.DataCategory.Philosophy,
     fileList2,
     policyId
   );
@@ -454,7 +462,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
   //Bob can directly download Alice's associated policy upload file without waiting for Alice's approval,
   //because the associated policy has already been created and does not need repeated approval. Note: This publish policy value is available for Bob
   //Bob get new upload file content
-  const arrayBuffer2: ArrayBuffer = await getFileContentByFileIdAsUser(
+  const arrayBuffer2: ArrayBuffer = await pre.getDataContentByDataIdAsUser(
     accountBob,
     fileIds[0]
   );
@@ -465,7 +473,7 @@ export const proxyReencryptionAPIsTestRun = async () => {
 
   //you can get all status files for mine apply: The files I applied for
   //status 0: all status, include:  applying，approved, rejected
-  const data = (await getFilesByStatus(
+  const data = (await pre.getDatasByStatus(
     undefined,
     accountBob.id,
     undefined,

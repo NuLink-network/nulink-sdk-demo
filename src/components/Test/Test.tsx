@@ -1,6 +1,7 @@
 import { memo } from "react";
-import { proxyReencryptionAPIsTestRun } from "@@/src/features/nulink-pre/testApis";
-import { proxyReencryptionAPIsTestRun as  proxyReencryptionAPIsMultiTestRun} from "@@/src/features/nulink-pre/testMultiApprove";
+import { run as singleRun } from "@@/src/features/nulink-pre/apis.test";
+import { run as multiRun } from "@@/src/features/nulink-pre/multi.approve.test";
+import { run as storageRun } from "@@/src/features/nulink-pre/external.storage.test";
 
 const Test = memo(() => {
   console.log("process.env: ", process.env);
@@ -9,14 +10,15 @@ const Test = memo(() => {
   );
 
   const testHandler = () => {
-    proxyReencryptionAPIsMultiTestRun()
-    //proxyReencryptionAPIsTestRun()
+    //storageRun()
+      multiRun()
+      //singleRun()
       .then((data) => {
         console.log("finish");
-      })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
+      });
+    // .catch((err) => {
+    //   console.log(err);
+    // });
   };
   return (
     <div>
