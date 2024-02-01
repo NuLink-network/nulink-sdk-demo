@@ -402,20 +402,25 @@ export const run = async () => {
   debugger;
 
   assert(aliceApprovedfilesList && aliceApprovedfilesList["total"] > 0);
-
+  
+  //Record this policy ID and account Bob for future use.
+  let policyId;
+  let accountBob;
   const fileIndex2s: number[] = []; //Array(numReqFiles).fill(-1);
   for (let index = 0; index < aliceApprovedfilesList["list"].length; index++) {
     const element = aliceApprovedfilesList["list"][index];
     if (element["file_id"] === applyFileId) {
       fileIndex2s.push(index);
       assert(element["file_owner_id"] === accountAlice.id);
-      const policyId = element["policy_id"];
+      const _policyId = element["policy_id"];
+      policyId = _policyId;
       //console.log(`index_${index} file policy Id: ${policyId}`)
       const accountBobId = element["proposer_id"];
-      const accountBob = bobAccountId2AccountMap[accountBobId];
+      const _accountBob = bobAccountId2AccountMap[accountBobId];
+      accountBob = _accountBob;
       //Bob finds out that his application has been approved by Alice. Bob now has permission to view the contents of the file
       const bobBeApprovedfilesList = await pre.getApprovedDatasAsUser(
-        accountBob,
+        _accountBob,
         1,
         1000
       );
@@ -447,11 +452,11 @@ export const run = async () => {
       const bobBeApprovedfilesInfo = bobBeApprovedfilesList["list"][fileIndex6];
       assert(bobBeApprovedfilesInfo["file_owner_id"] === accountAlice.id);
       const policyId2 = bobBeApprovedfilesInfo["policy_id"];
-      assert(policyId2 === policyId);
+      assert(policyId2 === _policyId);
 
       //Finally, Bob gets the contents of the file
       const arrayBuffer: ArrayBuffer = await pre.getDataContentByDataIdAsUser(
-        accountBob,
+        _accountBob,
         bobBeApprovedfilesInfo["file_id"]
       );
       const fileContent: string = Buffer.from(arrayBuffer).toString();
@@ -465,56 +470,56 @@ export const run = async () => {
 
   assert(fileIndex2s.length >= 0 && fileIndex2s.length > 0);
 
-  //  //Alice upload file to exist policy
+   //Alice upload file to exist policy
 
-  // const plainText2 = "This is a philosophy book content";
-  // const historyContent2: Uint8Array = enc.encode(plainText2);
+  const plainText2 = "This is a philosophy book content";
+  const historyContent2: Uint8Array = enc.encode(plainText2);
 
-  // //1.upload file by create policy
-  // const fileList2: DataInfo[] = [
-  //   {
-  //     label: `philosophy-${nanoid()}.pdf`,
-  //     dataArrayBuffer: historyContent2.buffer,
-  //   },
-  // ];
+  //1.upload file by create policy
+  const fileList2: DataInfo[] = [
+    {
+      label: `philosophy-${nanoid()}.pdf`,
+      dataArrayBuffer: historyContent2.buffer,
+    },
+  ];
 
-  // const fileIds = await pre.uploadDatasBySelectPolicy(
-  //   accountAlice,
-  //   pre.DataCategory.Philosophy,
-  //   fileList2,
-  //   policyId
-  // );
+  const fileIds = await pre.uploadDatasBySelectPolicy(
+    accountAlice,
+    pre.DataCategory.Philosophy,
+    fileList2,
+    policyId
+  );
 
-  // //Bob get new upload file content
-  // const arrayBuffer2: ArrayBuffer = await pre.getDataContentByDataIdAsUser(
-  //   accountBob,
-  //   fileIds[0]
-  // );
-  // const fileContent2: string = Buffer.from(arrayBuffer2).toString();
-  // console.log("fileContent2: ", fileContent2);
-  // console.log("plainText2: ", plainText2);
-  // assert(fileContent2 === plainText2);
+  //Bob get new upload file content
+  const arrayBuffer2: ArrayBuffer = await pre.getDataContentByDataIdAsUser(
+    accountBob,
+    fileIds[0]
+  );
+  const fileContent2: string = Buffer.from(arrayBuffer2).toString();
+  console.log("fileContent2: ", fileContent2);
+  console.log("plainText2: ", plainText2);
+  assert(fileContent2 === plainText2);
 
-  // //you can get all status files for mine apply: The files I applied for
-  // //status 0: all status, include:  applying，approved, rejected
-  // const data = (await pre.getDatasByStatus(
-  //   undefined,
-  //   accountBob.id,
-  //   undefined,
-  //   undefined,
-  //   0,
-  //   1,
-  //   1000
-  // )) as object;
-  // /*
-  //   return data format: {
-  //     list: [
-  //       { apply_id, file_id:, proposer, proposer_id, file_owner:, file_owner_id:, policy_id, hrac, start_at:, end_at, days, created_at, status }
-  //       ...
-  //     ],
-  //     total: 300,
-  //   }
-  // */
+  //you can get all status files for mine apply: The files I applied for
+  //status 0: all status, include:  applying，approved, rejected
+  const data = (await pre.getDatasByStatus(
+    undefined,
+    accountBob.id,
+    undefined,
+    undefined,
+    0,
+    1,
+    1000
+  )) as object;
+  /*
+    return data format: {
+      list: [
+        { apply_id, file_id:, proposer, proposer_id, file_owner:, file_owner_id:, policy_id, hrac, start_at:, end_at, days, created_at, status }
+        ...
+      ],
+      total: 300,
+    }
+  */
 
-  // assert(data && !isBlank(data) && data["total"] > 0);
+  assert(data && !isBlank(data) && data["total"] > 0);
 };

@@ -10,9 +10,13 @@ This project is a demo program that demonstrates how to use `@nulink_network/nul
       //the sdk backend testnet server address. in the nulink testnet,
       //you can use the address: https://agent.testnet.nulink.org/bk
       REACT_APP_CENTRALIZED_SERVER_URL=xxxxx
+
+
+      //If using the built-in data storage callbacks of the nulink-sdk (import {setIPFSDatas,getIPFSData} from '@nulink_network/nulink-sdk'), this parameter needs to be configured. Otherwise, please ignore it.
       //you ipfs address, Requires permission to write data. in the nulink testnet,
       //you can use the address: https://agent.testnet.nulink.org/nuipfs
       REACT_APP_IPFS_NODE_URL=xxxxx
+
 
       //Configure the parameters of the network that you connect to. Parameters for networks that are not connected do not need to be configured.
       
@@ -21,8 +25,6 @@ This project is a demo program that demonstrates how to use `@nulink_network/nul
       REACT_APP_BSC_TESTNET_PORTER_URI= xxxxx
       //the bsc testnet web3 rpc url. example: 
       REACT_APP_BSC_TESTNET_WEB3_RPC_URL=xxxxx
-      //the conflux testnet web3 rpc url. example:
-      REACT_APP_CONFLUX_ESPACE_TESTNET_WEB3_RPC_URL=xxxxx
 
     3. yarn install
     4. yarn start
