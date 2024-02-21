@@ -29,6 +29,7 @@ import {
   getIPFSData,
   setBEDatas,
   getBEData,
+  decrypt as pwdDecrypt
 } from "@nulink_network/nulink-sdk";
 
 import { nanoid } from "nanoid";
@@ -90,6 +91,18 @@ export const run = async () => {
     password
   )) as Account;
   assert(accountAlice);
+
+  const nuWallet: NuLinkHDWallet = nuLinkHDWallet;
+  const mnemonic = await nuWallet.getMnemonic(password);
+
+  console.log("mnemonic: ", mnemonic);
+  console.log("accountAlice", accountAlice);
+
+  console.log("accountAlice address", accountAlice.address);
+  console.log("accountAlice addressIndex", accountAlice.addressIndex);
+  console.log("accountAlice publicKey", accountAlice.encryptedKeyPair._publicKey);
+  console.log("accountAlice privateKey", pwdDecrypt(accountAlice.encryptedKeyPair._privateKey, true));
+  debugger;
 
   // Note: We only support one account currently.
 
@@ -402,7 +415,7 @@ export const run = async () => {
   debugger;
 
   assert(aliceApprovedfilesList && aliceApprovedfilesList["total"] > 0);
-  
+
   //Record this policy ID and account Bob for future use.
   let policyId;
   let accountBob;
@@ -470,7 +483,7 @@ export const run = async () => {
 
   assert(fileIndex2s.length >= 0 && fileIndex2s.length > 0);
 
-   //Alice upload file to exist policy
+  //Alice upload file to exist policy
 
   const plainText2 = "This is a philosophy book content";
   const historyContent2: Uint8Array = enc.encode(plainText2);
