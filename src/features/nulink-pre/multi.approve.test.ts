@@ -121,19 +121,19 @@ export const run = async () => {
       dataArrayBuffer: historyContent.buffer,
     },
     {
-      label: `history-${nanoid()}.pdf`,
+      label: `history1-${nanoid()}.pdf`,
       dataArrayBuffer: historyContent.buffer,
     },
     {
-      label: `history-${nanoid()}.pdf`,
+      label: `history2-${nanoid()}.pdf`,
       dataArrayBuffer: historyContent.buffer,
     },
     {
-      label: `history-${nanoid()}.pdf`,
+      label: `history3-${nanoid()}.pdf`,
       dataArrayBuffer: historyContent.buffer,
     },
     {
-      label: `history-${nanoid()}.pdf`,
+      label: `history4-${nanoid()}.pdf`,
       dataArrayBuffer: historyContent.buffer,
     },
   ];

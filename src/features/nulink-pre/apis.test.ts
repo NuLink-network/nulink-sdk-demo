@@ -96,6 +96,10 @@ export const run = async () => {
       label: `history-${nanoid()}.pdf`,
       dataArrayBuffer: historyContent.buffer,
     },
+    {
+      label: `history2-${nanoid()}.pdf`,
+      dataArrayBuffer: historyContent.buffer,
+    },
   ];
 
   // eslint-disable-next-line no-debugger
