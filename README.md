@@ -12,7 +12,7 @@ This project is a demo program that demonstrates how to use `@nulink_network/nul
       REACT_APP_CENTRALIZED_SERVER_URL=xxxxx
 
 
-      //If using the built-in data storage callbacks of the nulink-sdk (import {setIPFSDatas,getIPFSData} from '@nulink_network/nulink-sdk'), this parameter needs to be configured. Otherwise, please ignore it.
+      //If using the built-in data storage callbacks of the nulink-sdk (import {setIPFSData,getIPFSData} from '@nulink_network/nulink-sdk'), this parameter needs to be configured. Otherwise, please ignore it.
       //you ipfs address, Requires permission to write data. in the nulink testnet,
       //you can use the address: https://agent.testnet.nulink.org/nuipfs
       REACT_APP_IPFS_NODE_URL=xxxxx

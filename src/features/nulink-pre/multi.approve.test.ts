@@ -18,6 +18,7 @@ import {
   Account,
   Strategy,
   AccountManager,
+  GasInfo,
 } from "@nulink_network/nulink-sdk";
 
 import { BigNumber, ethers } from "ethers";
@@ -25,9 +26,9 @@ import {
   isBlank,
   StorageManager,
   DataCallback,
-  setIPFSDatas,
+  setIPFSData,
   getIPFSData,
-  setBEDatas,
+  setBEData,
   getBEData,
   decrypt as pwdDecrypt
 } from "@nulink_network/nulink-sdk";
@@ -42,7 +43,7 @@ export const run = async () => {
   // eslint-disable-next-line no-debugger
   debugger;
   const dataCallback: DataCallback = {
-    setDatas: setIPFSDatas,
+    setData: setIPFSData,
     getData: getIPFSData,
   };
   //Set the external storage used by the Pre process to IPFS (for example, encrypted files uploaded by users will be stored in this storage, and users can customize the storage).
@@ -50,7 +51,7 @@ export const run = async () => {
   // // eslint-disable-next-line no-debugger
   // debugger;
   // const dataCallback2: DataCallback = {
-  //   setDatas: setBEDatas,
+  //   setData: setBEData,
   //   getData: getBEData,
   // };
   // //Set the external storage used by the Pre process to IPFS (for example, encrypted files uploaded by users will be stored in this storage, and users can customize the storage).
@@ -142,14 +143,14 @@ export const run = async () => {
   debugger;
 
   //2. Alice encrypt and update a file to the ipfs network
-  await pre.uploadDatasByCreatePolicy(
+  await pre.uploadDataByCreatePolicy(
     accountAlice,
     pre.DataCategory.History,
     fileList
   );
 
   //3. We can get the file just uploaded
-  const resultList = (await pre.getUploadedDatas(
+  const resultList = (await pre.getUploadedData(
     accountAlice,
     undefined,
     1,
@@ -212,7 +213,7 @@ export const run = async () => {
     const accountBob = accountBobs[index];
 
     //Bob finds the file Alice has just uploaded
-    const findFileResultList = (await pre.getOtherShareDatas(
+    const findFileResultList = (await pre.getOtherShareData(
       accountBob,
       undefined,
       false,
@@ -267,7 +268,7 @@ export const run = async () => {
 
     //Bob requests permission to use the file for 7 days
     try {
-      await pre.applyForDatasUsagePermission([applyFileId], accountBob, 7);
+      await pre.applyForDataUsagePermission([applyFileId], accountBob, 7);
     } catch (e) {
       console.log(`bob_${index} apply file failed`, e);
       assert(false);
@@ -276,7 +277,7 @@ export const run = async () => {
 
   //Alice receives Bob's file usage request
   const filesNeedToApprovedResultList2 =
-    await pre.getDatasPendingApprovalAsPublisher(accountAlice, 1, 1000);
+    await pre.getDataPendingApprovalAsPublisher(accountAlice, 1, 1000);
   /*return data format: {
     list: [
       { apply_id, file_id:, proposer, proposer_id, file_owner:, file_owner_id:, policy_id, hrac, start_at:, end_at, days,  created_at }
@@ -352,7 +353,7 @@ export const run = async () => {
   console.log("server nlk fee  ether is:", serverValue);
 
   //2. Alice calc gas fee (wei): the chain of bsc test token
-  const gasFeeWei = await getPolicysGasFee(
+  const gasInfo: GasInfo = await getPolicysGasFee(
     accountBobIds,
     applyIds,
     ursulaShares,
@@ -362,7 +363,7 @@ export const run = async () => {
     BigNumber.from(serverFeeNLKInWei)
   );
 
-  const aliceApprovedfilesListLast = await pre.getApprovedDatasAsPublisher(
+  const aliceApprovedfilesListLast = await pre.getApprovedDataAsPublisher(
     accountAlice,
     1,
     1000
@@ -370,7 +371,7 @@ export const run = async () => {
 
   //Note: Please make sure that the account has sufficient tnlk and bsc testnet tokens before this, otherwise the approval will fail
   //Alice approves Bob's application for file usage. Whenever Alice approves a file request, an on-chain policy is created
-  await pre.approvalApplicationsForUseDatas(
+  await pre.approvalApplicationsForUseData(
     accountAlice,
     accountBobIds,
     applyIds,
@@ -380,7 +381,7 @@ export const run = async () => {
     endDates,
     "", //remark
     "", //porterUri
-    BigNumber.from(gasFeeWei)
+    gasInfo.gasFee
   );
 
   // eslint-disable-next-line no-debugger
@@ -393,7 +394,7 @@ export const run = async () => {
   do {
     await sleep(10000); //10 seconds
     //Alice, as the publisher of the file, obtains the list of files that she has successfully approved
-    aliceApprovedfilesList = await pre.getApprovedDatasAsPublisher(
+    aliceApprovedfilesList = await pre.getApprovedDataAsPublisher(
       accountAlice,
       1,
       1000
@@ -432,7 +433,7 @@ export const run = async () => {
       const _accountBob = bobAccountId2AccountMap[accountBobId];
       accountBob = _accountBob;
       //Bob finds out that his application has been approved by Alice. Bob now has permission to view the contents of the file
-      const bobBeApprovedfilesList = await pre.getApprovedDatasAsUser(
+      const bobBeApprovedfilesList = await pre.getApprovedDataAsUser(
         _accountBob,
         1,
         1000
@@ -496,7 +497,7 @@ export const run = async () => {
     },
   ];
 
-  const fileIds = await pre.uploadDatasBySelectPolicy(
+  const fileIds = await pre.uploadDataBySelectPolicy(
     accountAlice,
     pre.DataCategory.Philosophy,
     fileList2,
@@ -515,7 +516,7 @@ export const run = async () => {
 
   //you can get all status files for mine apply: The files I applied for
   //status 0: all status, include:  applying，approved, rejected
-  const data = (await pre.getDatasByStatus(
+  const data = (await pre.getDataByStatus(
     undefined,
     accountBob.id,
     undefined,

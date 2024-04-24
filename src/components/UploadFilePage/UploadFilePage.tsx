@@ -12,7 +12,7 @@ import { OvalButton } from "../OvalButton";
 import {
   StorageManager,
   DataCallback,
-  setIPFSDatas,
+  setIPFSData,
   getIPFSData,
 } from "@nulink_network/nulink-sdk";
 import * as wallet from "@nulink_network/nulink-sdk";
@@ -49,7 +49,7 @@ const UploadFilePage = (props: any) => {
   };
 
   const _onConfirmUpload = async () => {
-    const dataCallback: DataCallback = { setDatas: setIPFSDatas, getData: getIPFSData }
+    const dataCallback: DataCallback = { setData: setIPFSData, getData: getIPFSData }
     //Set the external storage used by the Pre process to IPFS (for example, encrypted data/files uploaded by users will be stored in this storage, and users can customize the storage).
     StorageManager.setDataCallback(dataCallback)
 
@@ -86,11 +86,11 @@ const UploadFilePage = (props: any) => {
         (await wallet.getWalletDefaultAccount(password)) as wallet.Account;
 
       // for (let index = 0; index < upFiles.length; index++) {
-      //   await wallet.uploadDatasByCreatePolicy(accountAlice, 'unkown', [
+      //   await wallet.uploadDataByCreatePolicy(accountAlice, 'unkown', [
       //     upFiles[index],
       //   ])
       // }
-      await wallet.uploadDatasByCreatePolicy(accountAlice, "unkown", upFiles);
+      await wallet.uploadDataByCreatePolicy(accountAlice, "unkown", upFiles);
 
       showMsg("Upload Success", "success");
       setFileList([]);
