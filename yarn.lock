@@ -3452,10 +3452,10 @@
   resolved "https://registry.npmmirror.com/@nucypher/nucypher-core/-/nucypher-core-0.2.0.tgz"
   integrity sha512-vSSMbe4ad/Bkq5fdehSiMcflvHqLjfcCqAym+GWSiOvs/LJh4nB8Zo2/bJoMES1M1xoCjAZv4NZpPMlZiAXgzQ==
 
-"@nulink_network/nulink-sdk@^0.5.23":
-  version "0.5.23"
-  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-sdk/-/nulink-sdk-0.5.23.tgz#2b4b2ec0b575abfaebbff174130498e00a3a3054"
-  integrity sha512-6M1jM4STEa9odY7gzIvzPWhH0OTwHUFa1Y+38UIt9Netu6Y+jVEXWoxW64s8k5U9W9lYMdecntbD7wYmmYt8AQ==
+"@nulink_network/nulink-sdk@^0.5.26":
+  version "0.5.26"
+  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-sdk/-/nulink-sdk-0.5.26.tgz#65024e2b0c9d78a35da248608e67cf76b9e5ce0f"
+  integrity sha512-f9vYc2QYXaDkQcyAEfLukIphAE3WntqzESftRPlxur7HhzHAWUnCCmwY1okzlCGcWfd+Do6WhuEaJ8WudBt4ZQ==
   dependencies:
     "@bnb-chain/greenfield-chain-sdk" "^0.2.2"
     "@ethereumjs/common" "^3.0.2"
