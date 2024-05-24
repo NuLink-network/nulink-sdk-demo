@@ -24,14 +24,14 @@ import {
   setIPFSData,
   getIPFSData,
   GasInfo
-} from "@nulink_network/nulink-sdk";
+} from "@nulink_network/nulink-sdk-app-test";
 
 import { BigNumber, ethers } from "ethers";
 import { nanoid } from "nanoid";
 import Web3 from "web3";
-import { type DataInfo } from "@nulink_network/nulink-sdk";
+import { type DataInfo } from "@nulink_network/nulink-sdk-app-test";
 
-import * as pre from "@nulink_network/nulink-sdk";
+import * as pre from "@nulink_network/nulink-sdk-app-test";
 import sleep from "await-sleep";
 
 export const run = async () => {

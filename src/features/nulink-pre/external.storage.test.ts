@@ -13,7 +13,7 @@ import {
   existDefaultAccount,
   getWalletDefaultAccount,
   Account
-} from '@nulink_network/nulink-sdk'
+} from '@nulink_network/nulink-sdk-app-test'
 import assert from 'assert-ts';
 
 export const run = async () => {

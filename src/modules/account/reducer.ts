@@ -1,4 +1,4 @@
-import { Account } from "@nulink_network/nulink-sdk"
+import { Account } from "@nulink_network/nulink-sdk-app-test"
 import {
     IBalanceData,
     FetchAccountInfoRequestAction,

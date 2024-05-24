@@ -14,8 +14,8 @@ import {
   DataCallback,
   setIPFSData,
   getIPFSData,
-} from "@nulink_network/nulink-sdk";
-import * as wallet from "@nulink_network/nulink-sdk";
+} from "@nulink_network/nulink-sdk-app-test";
+import * as wallet from "@nulink_network/nulink-sdk-app-test";
 import uploadIcon from "@@/src/assets/common/upload.svg";
 import { getSizeNumber, blobToArrayBuffer } from "@/utils/file";
 
