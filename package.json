@@ -13,7 +13,7 @@
     "@ethersproject/providers": "^5.7.2",
     "@ethersproject/wallet": "^5.7.0",
     "@mui/material": "^5.11.10",
-    "@nulink_network/nulink-sdk-app-test": "^0.0.9",
+    "@nulink_network/nulink-sdk-app-test": "^0.0.10",
     "@nulink_network/ts-indexdb": "^0.0.5",
     "@offirmo/globalthis-ponyfill": "^4.0.0",
     "@testing-library/jest-dom": "^5.14.1",

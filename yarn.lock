@@ -3510,10 +3510,10 @@
     read-package-json-fast "^3.0.0"
     which "^3.0.0"
 
-"@nulink_network/nulink-sdk-app-test@^0.0.9":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-sdk-app-test/-/nulink-sdk-app-test-0.0.9.tgz#dc0cdf8361b669dd7fb3a1c429790cf87a11a656"
-  integrity sha512-yBGJSAt0q6c7nM2h9HAj+QdowId3BQTOVd1OrGNLL7LomddCFdA8fiQZLKyTiT/48zqftTX4A0c9yWkWFazWUw==
+"@nulink_network/nulink-sdk-app-test@^0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-sdk-app-test/-/nulink-sdk-app-test-0.0.10.tgz#701b7845b30815b1c8d354ffbbeda221a1eaa9fd"
+  integrity sha512-pzAXfR51bfdAHqpMg2wypkpO6F6V6vslkij5dCrjGKE6EVtZ2RU2mhIwxFjC2tiove3cyZ7VaN9sy22D0obnDQ==
   dependencies:
     "@bnb-chain/greenfield-chain-sdk" "^0.2.2"
     "@ethereumjs/common" "^3.0.2"
