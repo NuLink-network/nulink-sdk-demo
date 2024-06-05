@@ -268,7 +268,7 @@ export const run = async () => {
 
     //Bob requests permission to use the file for 7 days
     try {
-      await pre.applyForDataUsagePermission([applyFileId], accountBob, 7);
+      await pre.applyForDataUsagePermission(applyFileId, accountBob, 7);
     } catch (e) {
       console.log(`bob_${index} apply file failed`, e);
       assert(false);

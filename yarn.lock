@@ -3452,10 +3452,10 @@
   resolved "https://registry.npmmirror.com/@nucypher/nucypher-core/-/nucypher-core-0.2.0.tgz"
   integrity sha512-vSSMbe4ad/Bkq5fdehSiMcflvHqLjfcCqAym+GWSiOvs/LJh4nB8Zo2/bJoMES1M1xoCjAZv4NZpPMlZiAXgzQ==
 
-"@nulink_network/nulink-sdk@^0.5.26":
-  version "0.5.26"
-  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-sdk/-/nulink-sdk-0.5.26.tgz#65024e2b0c9d78a35da248608e67cf76b9e5ce0f"
-  integrity sha512-f9vYc2QYXaDkQcyAEfLukIphAE3WntqzESftRPlxur7HhzHAWUnCCmwY1okzlCGcWfd+Do6WhuEaJ8WudBt4ZQ==
+"@nulink_network/nulink-sdk@^0.5.27":
+  version "0.5.27"
+  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-sdk/-/nulink-sdk-0.5.27.tgz#7c3acf4d54eb978c3299a4b3f718a4d8a85045c1"
+  integrity sha512-hKvSgE1/aoJ+UWs5rX5yatyuWZk34pCgfUx9ZcLRpPhTXjsFi9RCYEWE/YxUzgurZoavGKa8wPagkm7vUFZPbg==
   dependencies:
     "@bnb-chain/greenfield-chain-sdk" "^0.2.2"
     "@ethereumjs/common" "^3.0.2"
@@ -3463,7 +3463,7 @@
     "@ethersproject/providers" "^5.7.2"
     "@ethersproject/wallet" "^5.7.0"
     "@nucypher/nucypher-core" "0.2.0"
-    "@nulink_network/nulink-ts-crosschain" "^0.6.0"
+    "@nulink_network/nulink-ts-crosschain" "^0.6.2"
     "@nulink_network/ts-indexdb" "^0.0.5"
     "@offirmo/globalthis-ponyfill" "^4.0.0"
     "@types/humps" "^2.0.2"
@@ -3526,10 +3526,10 @@
     web3-core-helpers "^1.9.0"
     web3-eth-contract "^1.9.0"
 
-"@nulink_network/nulink-ts-crosschain@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-ts-crosschain/-/nulink-ts-crosschain-0.6.0.tgz#f3645ebf8df76c4196b4a46cbf890d7e06834adb"
-  integrity sha512-3O5IGDKJkOV+Ovw3hkbg3oSPuI9Cbsr7urDsqGVnAxhhzrkY6QN2necTNO5GNw/fMhZqSDc8UehOzazmFsNzJg==
+"@nulink_network/nulink-ts-crosschain@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-ts-crosschain/-/nulink-ts-crosschain-0.6.2.tgz#24562f962ce87e54411115a93d1dd983a7b24129"
+  integrity sha512-ti+MtkPxvq1Bi2wthqJzKsL6CjNbpze20uVpjAgBu13UKyCYvt2++63CWYMha4dgH3PdvJUqKp40Xd+VOGVGvA==
   dependencies:
     "@nucypher/nucypher-core" "0.2.0"
     axios "^0.21.1"
