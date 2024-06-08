@@ -3510,17 +3510,17 @@
     read-package-json-fast "^3.0.0"
     which "^3.0.0"
 
-"@nulink_network/nulink-sdk-app-test@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-sdk-app-test/-/nulink-sdk-app-test-0.0.10.tgz#701b7845b30815b1c8d354ffbbeda221a1eaa9fd"
-  integrity sha512-pzAXfR51bfdAHqpMg2wypkpO6F6V6vslkij5dCrjGKE6EVtZ2RU2mhIwxFjC2tiove3cyZ7VaN9sy22D0obnDQ==
+"@nulink_network/nulink-sdk-app-test@^0.0.19":
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-sdk-app-test/-/nulink-sdk-app-test-0.0.19.tgz#686401e5975ffe0b259c3c278d387d326b3b944a"
+  integrity sha512-gnbNIt/3HoliytkF29fxtgWfGvIA2FsQpQIlQFFndPst4NAIJ0/dqZV2b/eEwQtN0nl5s5cXoOrqOa/TUMwMOA==
   dependencies:
     "@bnb-chain/greenfield-chain-sdk" "^0.2.2"
     "@ethereumjs/common" "^3.0.2"
     "@ethereumjs/tx" "^4.0.2"
     "@ethersproject/providers" "^5.7.2"
     "@ethersproject/wallet" "^5.7.0"
-    "@nulink_network/nulink-ts-app-test" "^0.0.15"
+    "@nulink_network/nulink-ts-app-test" "^0.0.20"
     "@nulink_network/ts-indexdb" "^0.0.5"
     "@offirmo/globalthis-ponyfill" "^4.0.0"
     "@polkadot/x-textdecoder" "^12.6.2"
@@ -3584,10 +3584,10 @@
     web3-core-helpers "^1.9.0"
     web3-eth-contract "^1.9.0"
 
-"@nulink_network/nulink-ts-app-test@^0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-ts-app-test/-/nulink-ts-app-test-0.0.15.tgz#a8e52eb750075b8b2acb7b747bf2337e45d9e1e2"
-  integrity sha512-t/Du0L8wc6Hmoe744v6NNxEdYFOzZtoFwTwOChJjb2//aSmuhn3dZM8nK+M7U8oflkKFVoPu8GJnBnphPH0WlQ==
+"@nulink_network/nulink-ts-app-test@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@nulink_network/nulink-ts-app-test/-/nulink-ts-app-test-0.0.20.tgz#94f06e2cb75a828fbbf31cb55a50e0bd93fc2442"
+  integrity sha512-taFPIMKDCIaXVx22DIfCcviSh2/4u3ijYAlZnPXjo5oDVEfo2brXXoVE/ytQBn2YhyPOmxWM4WBjl0cnKZjeUg==
   dependencies:
     "@polkadot/x-textdecoder" "^12.6.2"
     axios "^0.21.1"
