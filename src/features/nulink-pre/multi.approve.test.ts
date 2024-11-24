@@ -321,10 +321,7 @@ export const run = async () => {
       filesNeedToApprovedResultList2["list"][fileIndex];
     //1. Alice calc server fee (wei): the nulink token tnlk/nlk
 
-    const startMs: number =
-      (Math.floor(new Date().getTime() / 1000) -
-        new Date().getTimezoneOffset() * 60) *
-      1000;
+    const startMs: number =new Date().getTime();
     const startDate: Date = new Date(startMs); //  start_at is seconds, but Date needs milliseconds
 
     const endMs: number =
